@@ -1,10 +1,13 @@
 import { Button, Input, Textarea } from "@chakra-ui/react";
 import { useState } from "react";
-interface Props {
-  onCreate: () => void;
+import { NoteProps } from "../types/NoteProps";
+
+interface CreateNoteProps {
+  onCreate: (note: NoteProps) => void;
 }
 
-export default function CreateNoteForm({onCreate } : Props) {
+
+export default function CreateNoteForm({onCreate } : CreateNoteProps) {
     const [note, setNote] = useState(null);
 
     const onSubmit = (e) => {

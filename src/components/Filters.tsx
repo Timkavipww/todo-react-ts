@@ -1,6 +1,8 @@
 import { Input,SelectContent, SelectItem, SelectRoot, SelectTrigger, SelectValueText, createListCollection } from '@chakra-ui/react';
+import { FilterProps } from '../types/FilterProps';
 
-export default function Filters({filter, setFilter}) {
+
+export default function Filters({ filter, setFilter }: FilterProps) {
     return (
         <div className='flex flex-col gap-5'>
                 <Input placeholder='Поиск' onChange={(e) => setFilter({...filter, search: e.target.value})}/>
@@ -9,14 +11,15 @@ export default function Filters({filter, setFilter}) {
                 <SelectValueText placeholder={orderBy.items.find((item) => item.value === filter.sortOrder)?.label || "Выберите сортировку"} />
               </SelectTrigger>
               <SelectContent>
-          {orderBy.items.map((item) => (
+          {orderBy.items.map((items) => (
             <SelectItem
-              key={item.value}
+              item={items}
+              key={items.value}
               onClick={() =>
-                setFilter({ ...filter, sortOrder: item.value })
+                setFilter({ ...filter, sortOrder: items.value })
               }
             >
-              {item.label}
+              {items.label}
             </SelectItem>
           ))}
         </SelectContent>
